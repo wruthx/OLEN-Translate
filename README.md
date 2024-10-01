@@ -15,4 +15,4 @@
 6. Запустіть і готово!
 
 ### Автор
-* **Олег Мручко** - *Оригінальний код* [olezhkoistaken](https://github.com/olezhkoistaken) aka [crabinaryx](https://github.com/crabinaryx)
+* **Олег Мручко** - *Оригінальний код* - [olezhkoistaken](https://github.com/olezhkoistaken) aka [crabinaryx](https://github.com/crabinaryx)
