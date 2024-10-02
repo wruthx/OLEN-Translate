@@ -39,20 +39,67 @@ func main() {
 			continue
 		}
 
-		translatedText, err := translateToUkrainian(update.Message.Text, deeplApiKey)
-		if err != nil {
-			log.Println("Translation error:", err)
-			continue
-		}
+		text := update.Message.Text
+		if strings.HasPrefix(text, "/") {
+			parts := strings.SplitN(text, " ", 2)
+			if len(parts) < 2 {
+				continue
+			}
+			langCode := strings.TrimPrefix(parts[0], "/")
+			textToTranslate := parts[1]
 
-		msg := tgbotapi.NewMessage(update.Message.Chat.ID, translatedText)
-		bot.Send(msg)
+			targetLang := getTargetLang(langCode)
+
+			if targetLang == "" {
+				msg := tgbotapi.NewMessage(update.Message.Chat.ID, "Unsupported language code!")
+				bot.Send(msg)
+				continue
+			}
+
+			translatedText, err := translateText(textToTranslate, targetLang, deeplApiKey)
+			if err != nil {
+				log.Println("Translation error:", err)
+				continue
+			}
+
+			msg := tgbotapi.NewMessage(update.Message.Chat.ID, translatedText)
+			bot.Send(msg)
+		} else {
+			translatedText, err := translateText(text, "UK", deeplApiKey)
+			if err != nil {
+				log.Println("Translation error:", err)
+				continue
+			}
+
+			msg := tgbotapi.NewMessage(update.Message.Chat.ID, translatedText)
+			bot.Send(msg)
+		}
 	}
 }
 
-func translateToUkrainian(text, apiKey string) (string, error) {
+func getTargetLang(prefix string) string {
+	switch prefix {
+	case "en":
+		return "EN"
+	case "tr":
+		return "TR"
+	case "de":
+		return "DE"
+	case "es":
+		return "ES"
+	case "fr":
+		return "FR"
+	case "sv":
+		return "SV"
+	default:
+		return ""
+	}
+}
+
+// translateText translates the input text to the specified target language using the DeepL API
+func translateText(text, targetLang, apiKey string) (string, error) {
 	deeplURL := "https://api-free.deepl.com/v2/translate"
-	reqBody := fmt.Sprintf("auth_key=%s&text=%s&target_lang=UK", apiKey, text)
+	reqBody := fmt.Sprintf("auth_key=%s&text=%s&target_lang=%s", apiKey, text, targetLang)
 	reqBodyReader := strings.NewReader(reqBody)
 
 	req, err := http.NewRequest("POST", deeplURL, reqBodyReader)
