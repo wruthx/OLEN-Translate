@@ -29,3 +29,5 @@
 
 ### Автор
 * **Олег Мручко** - *Оригінальний код* - [olezhkoistaken](https://github.com/olezhkoistaken) aka [crabinaryx](https://github.com/crabinaryx)
+
+![](images/meme.jpg)
