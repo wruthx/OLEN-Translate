@@ -3,7 +3,7 @@
 
 ## Про бота
 Цей телеграм бот перекладає слова чи речення з таких мов, як англійська, 
-іспанська, турецька, французька, німецька, шведська на українську мову і навпаки!
+іспанська, турецька, французька, німецька, шведська на українську мову і навпаки.
 
 ### Як працює переклад?
 
@@ -25,9 +25,9 @@
 3. Отримайте DeepL API та Telegram API.
 4. Встановіть та налаштуйте [GoLand](https://www.jetbrains.com/go/)
 5. Внесіть Ваші API в environmental variables в проєкті GoLand
-6. Запустіть і готово!
+6. Запустіть.
 
 ### Автор
-* **Олег Мручко** - *Оригінальний код* - [olezhkoistaken](https://github.com/olezhkoistaken) aka [crabinaryx](https://github.com/crabinaryx)
+* **Олег Мручко** - *Оригінальний код* - [olezhkoistaken](https://github.com/olezhkoistaken) aka [wruthx](https://github.com/wruthx)
 
 ![](images/meme.jpg)
